@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Firestore is not used by this PostgreSQL deployment.
+    // Deny every read/write until a reviewed owner/admin ruleset is deployed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
